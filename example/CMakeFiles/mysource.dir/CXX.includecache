@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/sources.cpp
+sources.h
+/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/sources.h
+
+/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/sources.h
+
