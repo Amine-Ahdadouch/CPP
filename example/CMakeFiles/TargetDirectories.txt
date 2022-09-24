@@ -1,4 +1,0 @@
-/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/CMakeFiles/edit_cache.dir
-/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/CMakeFiles/main.dir
-/mnt/c/Users/Qraigan/Desktop/Projet Epita/CPP/example/CMakeFiles/mysource.dir
