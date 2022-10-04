@@ -6,12 +6,10 @@ using namespace std;
 
 int main()
 {
-    string line;
-    getline(cin, line);
-    char numbers[line.length() + 1];
-    strcpy(numbers, line.c_str());
-    char *numtk = strtok(numbers, " ");
+    char line[256];
+    cin.getline(line, 256);
 
+    char *numtk = strtok(line, " ");
     while ( numtk != NULL){
         cout << numtk << " is a prime: " << (is_prime(atoi(numtk)) ? "True" : "False") << endl;
         numtk = strtok(NULL, " "); 
