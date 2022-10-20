@@ -1,100 +1,48 @@
-#include "vector.hpp"
+#pragma once
 
-    Vector::Vector(){
-        for (int i = 0; i < NDIM; i++){
-            vector[i] = 0;
+#include <ostream>
+#include <iostream>
+#include <initializer_list>
+
+#include "config.h"
+using namespace std;
+
+class Vector
+{
+public:
+    Vector(const Vector&) = default;
+    Vector& operator=(const Vector&) = default;
+    ~Vector() = default;
+
+    Vector(){
+        for(value i = 0; i < NDIM; i++)
+        {
+            vect[i] = 0;
         }
-    }
-
-    Vector::Vector(std::initializer_list<int> list){
-        std::initializer_list<int>::iterator il;
-        int value = 0;
-        for (il = list.begin(); il != list.end(); il++){
-            vector[value++] = *il;
-        }
-    }
-
-    Vector& Vector::operator+=(const Vector& rhs){
-        for (int i = 0; i < NDIM; ++i){ 
-            vector[i] += rhs.vector[i];
-        }
-        return *this;
-    }
-
-    Vector& Vector::operator+=(int value){
-        for (int i = 0; i < NDIM; i++){ 
-            vector[i] += value;
-        }
-        return *this;
-    }
-
-    Vector& Vector::operator-=(const Vector& rhs){
-        for (int i = 0; i < NDIM; ++i){ 
-            vector[i] -= rhs.vector[i];
-        }
-        return *this;
-    }
-
-    Vector& Vector::operator*=(const Vector& rhs){
-        for (int i = 0; i < NDIM; i++){ 
-            vector[i] *= rhs.vector[i];
-        }
-        return *this;
-    }
-
-    Vector& Vector::operator*=(const int& value){
-        for (int i = 0; i < NDIM; i++){ 
-            vector[i] *= value;
-        }
-        return *this;
-    }
-
-
-    Vector& Vector::operator+(const Vector& rhs){
-        auto v = Vector{rhs};
-        return v += *this;
-    }
-
-    Vector& Vector::operator-(const Vector& rhs){
-        auto v = Vector{rhs};
-        return v -= *this;
-    }
-
-    Vector operator*(const Vector& rhs, int value){
-        auto v = Vector{rhs};
-        int* data = Vector{rhs}.getValues();
-        for (int i = 0; i <= NDIM; i++){
-            v[i] += (value - 1) * data[i];
-        }
-        return v;
-    }
-
-    int& Vector::operator*(const Vector& rhs){
-        auto v = Vector{rhs};
-        auto vec = (v *= *this);
-        for (int i = 1; i < NDIM; i++){
-            *vec.getValues() += vec[i];
-        }
-        return *vec.getValues();
-    }
-
-    int& Vector::operator[](int rhs){
-        return vector[rhs];
-    }
-
-    std::ostream& operator<<(std::ostream& OsPrint, const Vector& rhs)
+    };
+    Vector(initializer_list<value> li)
     {
-        int i = 0;
-        OsPrint << "{";
-        int* data = Vector{rhs}.getValues();
-        while (i < NDIM - 1){
-            OsPrint << data[i] << ",";
-            i++;
+        value count = 0;
+        for (value element : li) {
+            vect[count] = element;
+            ++count;
         }
-        OsPrint << data[i] << "}";
-        return OsPrint;
-    }
+    };
+    const value& operator[](size_t pos) const;
+    value& operator[](size_t pos);
+    Vector& operator+=(const Vector& rhs);
+    Vector& operator+=(value scalar);
+    Vector& operator-=(const Vector& rhs);
+    Vector& operator*=(const Vector& rhs);
+    Vector& operator*=(const value& scalar);
 
-    int *Vector::getValues(){
-        return vector;
-    }
+private:
+    value vect[NDIM];
+};
+
+ostream& operator<<(ostream& os, const Vector& rhs);
+Vector operator+(const Vector& lhs, const Vector& rhs);
+Vector operator-(const Vector& lhs, const Vector& rhs);
+Vector operator*(const Vector& lhs, value scalar);
+Vector operator*(value scalar, const Vector& rhs);
+value operator*(const Vector& lhs, const Vector& rhs);

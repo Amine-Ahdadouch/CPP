@@ -49,6 +49,10 @@ class Vector
 };
 
 // Nonmember function operators go here
-std::ostream& operator<<(std::ostream& OsPrint, const Vector& rhs);
-Vector operator*(const Vector& rhs, int value);
+ostream& operator<<(ostream& os, const Vector& rhs);
+Vector operator+(const Vector& lhs, const Vector& rhs);
+Vector operator-(const Vector& lhs, const Vector& rhs);
+Vector operator*(const Vector& lhs, value scalar);
+Vector operator*(value scalar, const Vector& rhs);
+value operator*(const Vector& lhs, const Vector& rhs);
 #endif /* vector_hpp */
