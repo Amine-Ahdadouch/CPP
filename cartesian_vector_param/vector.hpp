@@ -1,58 +1,47 @@
-#ifndef vector_hpp
-#define vector_hpp
+#pragma once
 
-#include <iostream>
 #include <ostream>
-#include <initializer_list>
 
 #include "config.h"
 
 class Vector
 {
-    public:
-    // DO NOT CHANGE THIS
-        Vector(const Vector&) = default;
-        Vector& operator=(const Vector&) = default;
-        ~Vector() = default;
-    //
+public:
+// DO NOT CHANGE THIS
+    Vector(const Vector&) = default;
+    Vector& operator=(const Vector&) = default;
+    ~Vector() = default;
+//
 
-    // Add suitable constructors
-        Vector();
-        Vector(std::initializer_list<int> list);
-        // possibly more
+// Add suitable constructors
+    Vector();
+    Vector(std::initializer_list<value> l);
 
-    // Public Member functions here
-    //
-        Vector& operator+=(const Vector& rhs);
-        Vector& operator+=(int value);
+    size_t size() const;
 
-        Vector& operator-=(const Vector& rhs);
-        Vector& operator*=(const Vector& rhs);
-        Vector& operator*=(const int& value);
+// Public Member functions here
+    Vector& operator+=(const Vector& rhs);
+    // More to go
+    Vector& operator-=(const Vector& rhs);
+    Vector& operator+=(value v);
+    Vector& operator*=(value v);
 
-        Vector& operator+(const Vector& rhs);
-        Vector& operator-(const Vector& rhs);
+    Vector operator+(const Vector& rhs) const;
+    Vector operator+(value v) const;
+    value operator*(const Vector& rhs) const;
+    Vector operator*(value v) const;
 
-        int& operator*(const Vector& rhs);
+    value& operator[](size_t idx);
+    value operator[](size_t idx) const;
 
-        int& operator[](int rhs);
-
-
-        // More to go
-        int *getValues();
-
-    private:
-    // Private Member functions here
-
-    // Member variables are ALWAYS private, and they go here
-        int vector[NDIM];
+private:
+// Private Member functions here (if necessary)
+    value data[NDIM];
+    size_t vector_size;
+// Member variables are ALWAYS private, and they go here
 };
 
 // Nonmember function operators go here
-ostream& operator<<(ostream& os, const Vector& rhs);
-Vector operator+(const Vector& lhs, const Vector& rhs);
-Vector operator-(const Vector& lhs, const Vector& rhs);
-Vector operator*(const Vector& lhs, value scalar);
-Vector operator*(value scalar, const Vector& rhs);
-value operator*(const Vector& lhs, const Vector& rhs);
-#endif /* vector_hpp */
+Vector operator*(const value& s, const Vector& v);
+Vector operator+(const value& s, const Vector& v);
+std::ostream& operator<<(std::ostream& o, const Vector& v);
