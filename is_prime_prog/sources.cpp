@@ -3,20 +3,17 @@
 
 bool is_prime(long num)
 {
-    if (num == 3 || num == 2) return true;
-    if (num % 2 == 0 || num % 3 == 0) return false;
-    
-    for (int i = 4; i * i <= num; i++)
-    {
-        if (num % i == 0)
-        {
-            return false;
-        }
+    bool flag=true;
+    for(int i = 2; i <= num / 2; i++) {
+       if(num % i == 0) {
+          flag = false;
+          break;
+       }
     }
-    return num < 2 ? false : true;
+    return flag;
 }
 
 void printNum(long num)
 {
-    std::cout << num << " is a prime: " << (is_prime(num) == 1 ? "True" : "False") << "\n"; 
+    std::cout << num << " is a prime: " << (is_prime(num) ? "True" : "False") << "\n"; 
 }
