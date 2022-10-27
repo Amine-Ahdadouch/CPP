@@ -1,16 +1,22 @@
 #include <string.h>
 #include "sources.h"
 
-bool is_prime(long num)
+bool is_prime(long long int n)
 {
-    bool flag=true;
-    for(int i = 2; i <= num / 2; i++) {
-       if(num % i == 0) {
-          flag = false;
-          break;
-       }
+    if (n < 2)
+        return false;
+    if (n == 2) {
+        return true;
     }
-    return flag;
+    if (n % 2 == 0) {
+        return false;
+    }
+    for (long long int i = 3; i * i <= n; i += 2) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 void printNum(long num)
