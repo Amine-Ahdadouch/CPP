@@ -20,6 +20,6 @@ int main(int argc, char *argv[]) {
 		throw std::runtime_error("Unable to open output");
 
   read_and_sort_decide_valuetype(fi, fo);
-
+  
   return 0;
 }

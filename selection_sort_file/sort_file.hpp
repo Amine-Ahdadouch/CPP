@@ -14,8 +14,14 @@
 template <class type, class cont>
 void read_file_to_cont(std::ifstream &fi , cont& co) {
     type myelm;
-    while (fi >> myelm) {
-        co.push_back(myelm);
+    if constexpr (std::is_same<TYPE, char>::value) {
+        while (fi.get(myelm)) {
+            co.push_back(myelm);
+        }
+    } else {
+        while (fi >> myelm) {
+            co.push_back(myelm);
+        }
     }
 }
 
